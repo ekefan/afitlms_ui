@@ -33,13 +33,18 @@ export default function LoginPage() {
     const router = useRouter();
 
     const onSubmit = async (data: z.infer<typeof formSchema>) => {
-        const result = await submitForm(data);
-        if (!result.success) {
-            form.setError('email', { type: 'server', message: result.message });
-            form.setError('password', { type: 'server', message: result.message });
-            return;
+        try {
+            const result = await submitForm(data);
+            if (!result.success) {
+                form.setError('email', { type: 'server', message: result.message });
+                form.setError('password', { type: 'server', message: result.message });
+                return;
+            }
+            router.push('/dashboard');
+        } catch (error) {
+            console.error('Unexpected error in onSubmit: ', error)
+            alert("failed to login try again later")
         }
-        router.push('/dashboard');
     };
 
     return (
@@ -113,6 +118,8 @@ async function submitForm({ email, password }: { email: string; password: string
         return { success: true };
     } catch (error) {
         console.error('Error during login:', error);
-        throw error;
+        return {
+            success: false, message: `${error}`
+        };
     }
 }
