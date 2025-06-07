@@ -1,10 +1,10 @@
 export default function DashboardUsersPage() {
     const cards = [
-        { title: 'Enrol New User', href: '/dashboard/users/enrollments' },
-        { title: 'View All Students', href: '/dashboard/users/students' },
-        { title: 'View All Lecturers', href: '/dashboard/users/lecturers' },
-        { title: 'View Course Admins', href: '/dashboard/users/course-admins' },
-        { title: 'View QA Admins', href: '/dashboard/users/qa-admins' },
+        { title: 'Enroll New User', href: '/dashboard/users/enrollments/' },
+        { title: 'Students', href: '/dashboard/users/students' },
+        { title: 'Lecturers', href: '/dashboard/users/lecturers' },
+        { title: 'Course Admins', href: '/dashboard/users/course-admins' },
+        { title: 'QA Admins', href: '/dashboard/users/qa-admins' },
     ];
 
     return (

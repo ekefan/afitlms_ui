@@ -30,10 +30,13 @@ const roleBasedLinks: Record<UserRole, { name: string; href: string }[]> = {
 export default function NavLinks() {
     const pathname = usePathname();
     const [userRole, setUserRole] = useState<UserRole | null>(null);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
+        setIsClient(true)
         try {
             const user = localStorage.getItem('user');
+
             const roles: string[] = user ? JSON.parse(user).roles ?? [] : []
 
             const validRoles = roles.filter((r): r is UserRole =>
@@ -48,9 +51,12 @@ export default function NavLinks() {
         }
     }, []);
 
+    if (!isClient) return
+
     const linksToShow = userRole && roleBasedLinks[userRole]
         ? [...baseLinks, ...roleBasedLinks[userRole]]
         : baseLinks;
+
     return (
         <>
             {linksToShow.map((link) => (

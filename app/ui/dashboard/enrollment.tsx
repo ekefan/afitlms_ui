@@ -43,7 +43,8 @@ export default function CreateUser() {
             form.setError('schID', { type: 'server', message: result.message })
             return
         }
-        // router.push('/dashboard/role-assignments')
+
+        router.push(`/dashboard/users/enrollments/${result.userID}/assign_roles?name=${result.name}&schId=${result.schID}`)
     }
 
     return (
@@ -120,12 +121,10 @@ async function submitFormToCreateUser(data: { fullname: string, email: string, s
         console.log(resData)
         alert("User created successfully! Please proceed to assign user roles and biometrics.");
 
-        return { success: true }
+        return { success: true, userID: resData.data.id, schID: resData.data.sch_id, name: resData.data.full_name }
 
     } catch (error) {
         console.error("Error submitting form:", error)
         throw error;
     }
 }
-
-// Working on enrollment for users
