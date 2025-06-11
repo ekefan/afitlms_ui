@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { API_BASE_URL } from "@/lib/constants"
 
-export default function DropCourseDialog({
+export default function DeleteCourseDialog({
     courseCode,
     userId,
     role,
@@ -33,10 +33,16 @@ export default function DropCourseDialog({
 
     if (!role) return;
     useEffect(() => {
+        console.log(role)
         if (role == 'lecturer') {
             setDropCourseText('Unassign');
-            setAlertDialogDescriptionText('This will remove you as the active lecturer from this course. You can set as active lecturer if no other lecturer assign')
-            setConfirmDropText('Confirm')
+            setAlertDialogDescriptionText('This will remove you as the active lecturer from this course. You can set as active lecturer if no other lecturer assign');
+            setConfirmDropText('Confirm');
+        }
+        if (role == 'course_admin') {
+            setDropCourseText('Delete Course');
+            setAlertDialogDescriptionText('This will delete this course from the system. Students and Lecturers will not be able to record attendance for this course');
+            setConfirmDropText('Delete');
         }
     }, [])
     const handleDropCourse = async () => {
@@ -45,13 +51,14 @@ export default function DropCourseDialog({
 
             const studentURL = `${API_BASE_URL}/users/students/${userId}/course_registrations/${courseCode}`
             const lecturerURL = `${API_BASE_URL}/users/lecturers/${userId}/course_assignments/${courseCode}`
+            const courseAdminURL = `${API_BASE_URL}/courses/${courseCode}`
             let serverUrl: string | null = null;
 
             if (!role) return;
             if (role.toLowerCase() === 'student') serverUrl = studentURL
             else if (role?.toLowerCase() === 'lecturer') {
                 serverUrl = lecturerURL
-            }
+            } else serverUrl = courseAdminURL;
             if (!serverUrl) return;
 
             const res = await fetch(serverUrl, {

@@ -1,7 +1,6 @@
 'use client';
 
 import { API_BASE_URL } from '@/lib/constants';
-import { Router } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import DropCourseDialog from "./DropCourseDialog";
@@ -14,7 +13,10 @@ type CourseEligibility = {
     eligibility: number;
 };
 
-export default function StudentCourses({ userId }: { userId: string | null }) {
+export default function StudentCourses({ userId, role }: {
+    userId: string | null;
+    role: string | null;
+}) {
     const [courses, setCourses] = useState<CourseEligibility[]>([]);
     const [isClient, setIsClient] = useState(false)
     const router = useRouter();
@@ -82,7 +84,7 @@ export default function StudentCourses({ userId }: { userId: string | null }) {
                                     </span>
                                 </p>
                             </div>
-                            <DropCourseDialog courseCode={course.course_code} userId={userId} onCourseDropped={fetchCourses} />
+                            <DropCourseDialog courseCode={course.course_code} userId={userId} onCourseDropped={fetchCourses} role={role} />
 
                         </div>
                     ))}

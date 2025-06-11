@@ -67,7 +67,7 @@ export default function EnrollFingerPrintsPage() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         roles: roles, // You can update this dynamically if needed
-                        biometric_template: '' // Optional or mock placeholder for now
+                        biometric_template: crypto.randomUUID() // Optional or mock placeholder for now
                     }),
                 });
 

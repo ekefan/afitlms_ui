@@ -21,6 +21,7 @@ const roleBasedLinks: Record<UserRole, { name: string; href: string }[]> = {
     ],
     lecturer: [
         { name: 'My Classes', href: '/dashboard/classes' },
+        { name: 'Courses', href: '/dashboard/courses' },
         { name: 'Profile', href: '/dashboard/profile' },
         { name: 'User Management', href: '/dashboard/users' },
     ],
