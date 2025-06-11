@@ -4,15 +4,17 @@ import CourseAdminCourses from '@/app/ui/courses/CourseAdminCoursesPage'
 import LecturerCourses from '@/app/ui/courses/LecturerCoursesPage'
 import StudentCourses from '@/app/ui/courses/StudentCoursesPage'
 import { useRole } from '@/app/ui/courses/RoleContext'
+import AdminCoursesPage from '@/app/ui/courses/AdminCoursesPage'
 
 export default function DashboardUsersPage() {
     const { activeRole, userId } = useRole()
 
     return (
         <div>
-            {activeRole === 'lecturer' && <LecturerCourses userId={userId} />}
-            {activeRole === 'student' && <StudentCourses userId={userId} />}
-            {activeRole === 'course_admin' && <CourseAdminCourses userId={userId} />}
+            {activeRole === 'lecturer' && <LecturerCourses userId={userId} role={activeRole} />}
+            {activeRole === 'student' && <StudentCourses userId={userId} role={activeRole} />}
+            {activeRole === 'course_admin' && <CourseAdminCourses userId={userId} role={activeRole} />}
+            {activeRole === 'admin' && <AdminCoursesPage userId={userId} role={activeRole} />}
         </div>
     )
 }
