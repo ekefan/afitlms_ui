@@ -12,8 +12,8 @@ export default function AdminCoursesPage({ userId, role }: {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Eligibility Tile */}
-                <Link href="/dashboard/course/eligibility/" passHref>
-                    <div className="block p-6 border-2 shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
+                <Link href="/dashboard/courses/eligibilities/" passHref>
+                    <div className="block p-6 border-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
                         <h2 className="text-xl font-semibold mb-2">
                             Manage Course Eligibility
                         </h2>
@@ -24,7 +24,7 @@ export default function AdminCoursesPage({ userId, role }: {
                 </Link>
 
                 {/* Availability Tile */}
-                <Link href="/dashboard/course/availability/" passHref>
+                <Link href="/dashboard/courses/availability/" passHref>
                     <div className="block p-6 border-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
                         <h2 className="text-xl font-semibold mb-2">
                             Manage Course Availability

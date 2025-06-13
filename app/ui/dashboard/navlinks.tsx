@@ -41,7 +41,7 @@ export default function NavLinks() {
             const roles: string[] = user ? JSON.parse(user).roles ?? [] : []
 
             const validRoles = roles.filter((r): r is UserRole =>
-                ['qa_admin', 'student', 'lecturer'].includes(r)
+                ['qa_admin', 'student', 'lecturer', 'course_admin'].includes(r)
             );
 
             if (validRoles.length > 0) {

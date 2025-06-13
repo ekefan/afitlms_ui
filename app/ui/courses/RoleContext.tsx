@@ -5,7 +5,7 @@ import React, { createContext, useContext } from 'react';
 type RoleContextType = {
     activeRole: string;
     userId: string | null;
-    switchRole: () => void;
+    switchRole: (role: string) => void;
 };
 
 export const RoleContext = createContext<RoleContextType | undefined>(undefined);

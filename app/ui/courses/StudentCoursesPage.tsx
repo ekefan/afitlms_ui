@@ -34,6 +34,7 @@ export default function StudentCourses({ userId, role }: {
             }
 
             const data = await res.json();
+            console.log(data);
             setCourses(data.courses);
         } catch (err: any) {
             console.log(err)

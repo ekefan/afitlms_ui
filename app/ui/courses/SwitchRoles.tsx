@@ -19,6 +19,8 @@ interface RoleSwitcherDropdownProps {
 }
 
 export function RoleSwitcherDropdown({ roles, activeRole, onRoleChange }: RoleSwitcherDropdownProps) {
+
+    console.log('Active Role in Dropdown:', activeRole, "the role is active brooo");
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
